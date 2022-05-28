@@ -1,0 +1,37 @@
+  #preview{
+    height: 100vh;
+  }
+  
+  .itemList{
+    width: 100%;
+  }
+
+  .item {
+    margin: 0 auto;
+    margin-top: calc(50vh - 150px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    height: 200px;
+    border-radius: 200px;
+    overflow: hidden;
+    background-color: #232323;
+    border: 1px solid #999;
+    transition: fadeIn 1s linear forwards;
+  }
+
+  .item:hover{
+    background-color: #DDD;
+  }
+
+  .item span {
+    color: #999;
+    font-size: 2vw;
+    letter-spacing: 0.1em;
+  }
+
+
+.item a{
+    text-decoration: none;
+}

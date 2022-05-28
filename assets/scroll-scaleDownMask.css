@@ -1,0 +1,42 @@
+.itemList{
+    margin-bottom: 200px;
+}
+.itemList .itemMask {
+    margin: 0 auto;
+    width: 50%;
+    will-change: opacity transform;
+}
+
+.mask{
+    margin-top: 150px;
+    display: block;
+    line-height: 0;/*行の高さを0にする*/
+    overflow: hidden;/*拡大してはみ出る要素を隠す*/
+}
+
+.itemList .itemMask img {
+    width: 100%;
+    height: auto;
+    opacity: 0;
+}   
+.itemList .itemMask p {
+    padding-top: 0.2em;
+    font-size: 2vw;
+    letter-spacing: 0.05em;
+    color: #999;
+}   
+
+.itemList .item.effect {
+    animation: fadeIn 1s linear forwards;
+}
+
+@keyframes fadeIn{
+    from{
+        opacity: 0;
+        transform: scale(1.5);
+    }
+    to{
+        opacity: 1;
+        transform: scale(1);
+    }
+}
