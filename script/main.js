@@ -25,8 +25,9 @@
       cubicBezier: "0.33, 1, 0.68, 1",
       duration: 0.6,
       text: true,
-      marker: true,
-      markerSpeed: '0.2'
+      marker: false,
+      rateOfChange : 70,
+      secondsMarker : 0.2
     };
 
     const preset = {
@@ -78,7 +79,7 @@
     });
     duration_f.addInput(
       PARAMS, 'duration',
-      {min: 0, max: 3, step: 0.05}
+      {min: 0, max: 3, step: 0.025}
     );
 
     const info_f = pane.addFolder({
@@ -86,14 +87,20 @@
     });
     info_f.addInput(PARAMS, 'text');
     info_f.addInput(PARAMS, 'marker');
-    info_f.addInput(PARAMS, 'markerSpeed', {
-      options: {
-        medium: 0.2,
-        fast: 0.1,
-        quick:0.025,
-        slow: 0.3
-      },
-    });
+    info_f.addInput(PARAMS, 'rateOfChange',
+      {min: 0, max: 100, step: 2.5}
+    );
+    info_f.addInput(PARAMS, 'secondsMarker',
+      {min: 0, max: 0.5, step: 0.05}
+    );
+    // info_f.addInput(PARAMS, 'rateOfChange ', {
+    //   options: {
+    //     medium: 0.2,
+    //     fast: 0.1,
+    //     quick:0.025,
+    //     slow: 0.3
+    //   },
+    // });
 
     pane.on('change', (ev) => {
       graphDraw(ev);
@@ -199,13 +206,13 @@
       if(PARAMS.marker == true){
         ctx.globalAlpha = 0.25;
         ctx.beginPath();
-        ctx.rect(graph.x,graph.y+graph.height*PARAMS.markerSpeed,graph.width,5);
+        ctx.rect(graph.x, graph.y-(graph.height*(PARAMS.rateOfChange/100) - graph.height),graph.width,5);
         ctx.fillStyle= "#FFFF00";
         ctx.fill();  
         ctx.closePath();
-        if(PARAMS.duration > 0.19){
+        if(PARAMS.duration > 0){
           ctx.beginPath();
-          ctx.rect(graph.x+ (graph.x*2.0)*0.2 / PARAMS.duration, graph.y ,graph.width*0.3  / PARAMS.duration,graph.height);//200ms~300ms
+          ctx.rect(graph.x+ (graph.x*2.0)*PARAMS.secondsMarker / PARAMS.duration, graph.y ,5,graph.height);//200ms~300ms
           ctx.fillStyle= "#FF0000";
           ctx.fill();  
           ctx.closePath();
